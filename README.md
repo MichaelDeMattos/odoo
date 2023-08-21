@@ -30,3 +30,16 @@ For a standard installation please follow the <a href="https://www.odoo.com/docu
 from the documentation.
 
 To learn the software, we recommend the <a href="https://www.odoo.com/slides">Odoo eLearning</a>, or <a href="https://www.odoo.com/page/scale-up-business-game">Scale-up</a>, the <a href="https://www.odoo.com/page/scale-up-business-game">business game</a>. Developers can start with <a href="https://www.odoo.com/documentation/16.0/developer/howtos.html">the developer tutorials</a>
+
+
+Exec Odoo with Docker
+-------------------------
+
+First thing that you have to do is make .env and odoo.ini files with your personal configuration, done that you are ready exec that command bellow:
+
+```bash
+# note you can use the files .env.example and odoo.ini
+# on this repository to create the same file with your personal information
+docker compose --env-file .env up --build
+```
+Now you have to await docker services is up and use your browser to access Odoo application on: <a href="http://localhost:8069">http://localhost:8069</a>
