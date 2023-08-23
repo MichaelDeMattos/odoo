@@ -52,3 +52,6 @@ venv
 # config
 odoo.ini
 .env
+
+# custom addons
+odoo_custom_addons/

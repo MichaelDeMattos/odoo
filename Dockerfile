@@ -1,7 +1,7 @@
 FROM python:3.10.1
 
-RUN apt update \
-    && apt install libpq-dev \
+RUN apt update && \
+    apt install libpq-dev \
     gcc \
     wait-for-it \
     python3-pip \
@@ -9,14 +9,15 @@ RUN apt update \
     libsasl2-dev -y \
     && pip install --upgrade pip
 
-
-WORKDIR /odoo
+RUN useradd --create-home odoo
+USER odoo
+WORKDIR /home/odoo/odoo
 
 # Copy
-COPY ./requirements.txt /odoo/requirements.txt
-RUN pip install -r /odoo/requirements.txt
-COPY . /odoo/
+COPY ./requirements.txt /home/odoo/odoo/requirements.txt
+RUN pip install -r /home/odoo/odoo/requirements.txt
+COPY . /home/odoo/odoo/
 
 ENTRYPOINT ["/bin/bash", "-c"]
 CMD ["wait-for-it -h odoo_db -p 5432 --strict --timeout=300 -- \
-      /odoo/odoo-bin --config /odoo/odoo.ini"]
+      /home/odoo/odoo/odoo-bin --config /home/odoo/odoo/odoo.ini"]
